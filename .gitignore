@@ -1,6 +1,10 @@
+__pycache__/
+
 /.idea
 /venv
 
-__pycache__/
-
+*.sqlite3
+/tasks/__pycache__
+/tasks/__pycache__
+/tasks/__pycache__
 *.sqlite3
