@@ -4,7 +4,3 @@ __pycache__/
 /venv
 
 *.sqlite3
-/tasks/__pycache__
-/tasks/__pycache__
-/tasks/__pycache__
-*.sqlite3
