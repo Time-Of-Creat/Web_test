@@ -1,0 +1,22 @@
+<!-- tasks/templates/tasks/task_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мои задачи</title>
+</head>
+<body>
+    <h1>Список задач</h1>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <span style="{% if task.completed %}text-decoration: line-through;{% endif %}">
+                    {{ task.title }} (создана: {{ task.creation_date }})
+                </span>
+            </li>
+        {% empty %}
+            <li>Задач нет!</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
