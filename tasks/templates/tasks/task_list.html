@@ -17,6 +17,9 @@
                 <span style="{% if task.completed %}text-decoration: line-through;{% endif %}">
                     {{ task.title }} (создана: {{ task.creation_date }})
                 </span>
+                <a href="{% url 'task_update' task.pk %}">[Ред.]</a>
+                <a href="{% url 'task_delete' task.pk %}" style="color: red;">[Удалить]</a>
+                <a href="{% url 'task_complete' task.pk %}">[✓ Завершить]</a>
             </li>
         {% empty %}
             <li>Задач нет!</li>
