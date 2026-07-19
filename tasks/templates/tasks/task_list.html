@@ -1,29 +1,19 @@
-<!-- tasks/templates/tasks/task_list.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Мои задачи</title>
-</head>
-<body>
+{% extends 'tasks/base.html' %}
+
+{% block content %}
     <h1>Список задач</h1>
-
-    <a href="{% url 'task_create' %}">
-        <button>➕ Добавить новую задачу</button>
-    </a>
-
     <ul>
         {% for task in tasks %}
             <li>
                 <span style="{% if task.completed %}text-decoration: line-through;{% endif %}">
-                    {{ task.title }} (создана: {{ task.creation_date }})
+                    {{ task.title }}
                 </span>
+                <a href="{% url 'task_complete' task.pk %}">[✓ Завершить]</a>
                 <a href="{% url 'task_update' task.pk %}">[Ред.]</a>
                 <a href="{% url 'task_delete' task.pk %}" style="color: red;">[Удалить]</a>
-                <a href="{% url 'task_complete' task.pk %}">[✓ Завершить]</a>
             </li>
         {% empty %}
-            <li>Задач нет!</li>
+            <li>Пока нет задач. Создай первую!</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,8 @@
-<!-- tasks/templates/tasks/task_form.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Создание задачи</title>
-</head>
-<body>
+{% extends 'tasks/base.html' %}
+
+{% block title %}Создание задачи{% endblock %}
+
+{% block content %}
     <h1>Новая задача</h1>
     <form method="post">
         {% csrf_token %}
@@ -14,5 +12,4 @@
 
     <br>
     <a href="{% url 'task_list' %}">Назад к списку</a>
-</body>
-</html>
+{% endblock %}
