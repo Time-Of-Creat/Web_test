@@ -10,8 +10,18 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
         <a  class="navbar-brand" href="{% url 'task_list' %}">📝 Task Manager</a>
         <div class="ms-auto">
-            <a href="{% url 'task_create' %}" class="btn btn-primary btn-sm">+ Добавить задачу</a>
-        </div>
+        {% if user.is_authenticated %}
+            <span class="text-light me-2">Привет, {{ user.username }}!</span>
+            <a href="{% url 'task_create' %}" class="btn btn-primary btn-sm me-2">+ Добавить задачу</a>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-light btn-sm">Выйти</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm me-2">Войти</a>
+            <a href="{% url 'signup' %}" class="btn btn-light btn-sm">Регистрация</a>
+        {% endif %}
+    </div>
     </nav>
     <hr>
 
