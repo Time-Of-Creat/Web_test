@@ -4,6 +4,7 @@ from django.views.generic import CreateView, DeleteView, UpdateView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 from tasks.exceptions import TaskAlreadyCompletedError
 from tasks.models import Task
@@ -45,6 +46,7 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
 
 
+@login_required
 def task_complete(request, pk):
     task = get_object_or_404(Task, pk=pk)
     try:
@@ -55,6 +57,7 @@ def task_complete(request, pk):
     return redirect('task_list')
 
 
+@login_required
 def task_list(request):
     tasks = Task.objects.filter(user=request.user).order_by('-creation_date')
     return render(request, 'tasks/task_list.html', {'tasks': tasks})
